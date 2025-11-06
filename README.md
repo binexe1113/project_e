@@ -1,6 +1,8 @@
 # Projeto Elo Fácil
 Este é um projeto de website front-end estático para a "Elo Fácil", uma landing page que promove serviços de Elo boosting para o jogo League of Legends.
 
+![Demo](./2025-11-06%2012-18-15.gif)
+
 O projeto é composto por uma página principal *index.html* que detalha os serviços e uma página de vendas *vendas.html* com um formulário para solicitação de serviço.
 
 # Funcionalidades Principais
