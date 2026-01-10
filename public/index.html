@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="estilos/styles.css" />
     <script src="scripts/scripts.js" defer></script>
     <script src="scripts/scripts2.js" defer></script>
+    <script src="scripts/auth.js" defer></script>
+
 
 
     <title>Elo GO</title>
@@ -21,13 +23,25 @@
             <ul>
                 <li id="font-header"><a href="#section1">Serviços</a></li>
                 <li id="font-header"><a href="#section2">Avaliações</a></li>
-                <a href="#"><img src="imagens/elofacil(e).png" width="35" id="xfd"></a></li>
+
+                <li><a href="#"><img src="imagens/elofacil(e).png" width="35" id="xfd"></a></li>
+
                 <li id="font-header"><a href="#section3">Vantagens</a></li>
                 <li id="font-header"><a href="#section4">Garantias</a></li>
+
+                <li id="login-container" style="display: none;">
+                    <a href="/auth/google" style="display: inline; align-items: center; gap: 5px;">
+                        Entrar
+                    </a>
+                </li>
+
+                <li id="user-container" style="display: none;">
+                    <span id="user-name" style="color: #E44F25; font-weight: bold; margin-right: 10px;">Olá!</span>
+                    <a href="/logout" style="font-size: 0.9em; border: 1px solid white; padding: 5px 10px; border-radius: 15px;">Sair</a>
+                </li>
             </ul>
         </nav>
     </header>
-
     <h1 id="titulo1">CONQUISTE O ELO QUE VOCÊ MERECE</h1>
     <img src="imagens/elofacil_azul.png">
     <br>
@@ -58,7 +72,7 @@
                     <p id="titul0">Garanta sua MD5</p>
                     <h1 id="til0">MD5</h1>
                     <img src="imagens/duoboost.png" width="200px">
-                    <p id="x0">Nós garantimos 80% de vitória em sua série de classificação Elo Boost e 60% para Duo Boost</p>
+                    <p id="x0">Nós garantimos 80% de vitória em sua série de classificação</p>
                     <a href="paginas/job.html"><prod-button class="product-button">Solicitar</prod-button></a>
                 </div>
                 <div class="grid-item0">

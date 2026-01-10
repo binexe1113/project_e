@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="../estilos/styles.css"/>
+    <script src="../scripts/auth.js" defer></script>
+    <script src="../scripts/profile.js" defer></script>
+
+    <title>Meu Perfil - Elo Fácil</title>
+</head>
+<body class="sales-body">
+
+    <header id="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">◀ Voltar para Home</a></li>
+                <li id="login-container" style="display: none;"></li>
+                <li id="user-container" style="display: none;"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <video src="../imagens/background_video.mp4" autoplay muted loop preload="auto" id="background_video"></video>
+
+    <main class="profile-container">
+
+        <aside class="profile-card">
+            <div class="avatar-container">
+                <img id="user-avatar" src="../imagens/elofacil(e).png" alt="Avatar">
+            </div>
+            <h2 id="user-name">Carregando...</h2>
+            <p id="user-email" class="email-text">...</p>
+            <hr>
+            <div class="stats">
+                <p>Pedidos Realizados: <strong id="order-count">0</strong></p>
+                <p>Membro desde: <strong id="member-since">...</strong></p>
+            </div>
+            <a href="/logout" class="logout-btn-profile">Sair da Conta</a>
+        </aside>
+
+        <section class="history-section">
+            <h1>📦 Histórico de Pedidos</h1>
+
+            <div class="table-wrapper">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Serviço</th>
+                            <th>Detalhes (De ➔ Para)</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+
+                <div id="no-orders" class="no-orders-message">
+                    Você ainda não fez nenhum pedido. <br>
+                    <a href="job.html">Fazer meu primeiro pedido</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

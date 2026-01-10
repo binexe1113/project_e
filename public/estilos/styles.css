@@ -541,3 +541,345 @@ text-align: center;
         position: static; /* Remove o sticky no mobile */
     }
 }
+
+
+
+/* Remove o fundo laranja geral do container do usuário */
+#user-container:hover {
+    background-color: transparent !important;
+}
+
+/* (Opcional) Cria um efeito apenas no botão "Sair" */
+#user-container a:hover {
+    background-color: #E44F25; /* O botão fica laranja, mas não a linha toda */
+    border-color: #E44F25 !important;
+    color: white;
+    transition: 0.3s;
+}
+
+
+/* --- PÁGINA DE PERFIL --- */
+
+.profile-container {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Coluna esquerda fixa, direita flexível */
+    gap: 30px;
+}
+
+/* Cartão Lateral (Esquerda) */
+.profile-card {
+    background-color: rgba(29, 29, 41, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    height: fit-content;
+}
+
+.avatar-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #E44F25;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.profile-card h2 {
+    font-size: 1.5rem;
+    margin: 10px 0 5px;
+    color: white;
+}
+
+.email-text {
+    color: #888;
+    font-size: 0.9rem;
+    word-break: break-all;
+}
+
+.stats {
+    text-align: left;
+    margin: 20px 0;
+    color: #ccc;
+}
+
+.stats strong {
+    color: white;
+    float: right;
+}
+
+.logout-btn-profile {
+    display: block;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.logout-btn-profile:hover {
+    background-color: #d32f2f;
+}
+
+/* Área de Histórico (Direita) */
+.history-section {
+    background-color: rgba(29, 29, 41, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-section h1 {
+    margin-top: 0;
+    color: #E44F25;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
+}
+
+/* Tabela Estilizada */
+.table-wrapper {
+    overflow-x: auto; /* Para funcionar no celular */
+}
+
+#history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#history-table th,
+#history-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+#history-table th {
+    color: #aaa;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+#history-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.badge-pending {
+    background-color: #856404;
+    color: #fff3cd;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr; /* Vira uma coluna só */
+    }
+}
+
+
+/* =========================================
+   PÁGINA DE PERFIL (profile.html)
+   ========================================= */
+
+.profile-container {
+    max-width: 1200px;
+    margin: 120px auto 50px; /* Margem topo ajustada para header */
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Lateral fixa, conteúdo flexível */
+    gap: 30px;
+}
+
+/* --- Cartão Lateral (User Info) --- */
+.profile-card {
+    background-color: rgba(29, 29, 41, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    height: fit-content; /* Altura ajustada ao conteúdo */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.avatar-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #E44F25;
+    margin-bottom: 15px;
+    object-fit: cover;
+    background-color: #1a1a1a;
+}
+
+.profile-card h2 {
+    font-size: 1.5rem;
+    margin: 10px 0 5px;
+    color: white;
+}
+
+.email-text {
+    color: #888;
+    font-size: 0.9rem;
+    word-break: break-all;
+}
+
+.stats {
+    text-align: left;
+    margin: 20px 0;
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.stats strong {
+    color: #E44F25;
+    float: right;
+}
+
+.logout-btn-profile {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: 0.3s;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-btn-profile:hover {
+    background-color: #d32f2f;
+}
+
+/* --- Área de Histórico (Direita) --- */
+.history-section {
+    background-color: rgba(29, 29, 41, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 400px;
+}
+
+.history-section h1 {
+    margin-top: 0;
+    color: #E44F25;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+/* Tabela */
+.table-wrapper {
+    overflow-x: auto; /* Scroll horizontal em celular */
+    margin-top: 20px;
+}
+
+#history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#history-table th,
+#history-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+#history-table th {
+    color: #aaa;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#history-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.service-name {
+    color: white;
+    font-weight: bold;
+}
+
+.price-col {
+    color: #E44F25;
+    font-weight: bold;
+}
+
+/* Badges de Status (Cores) */
+.badge-pending {
+    background-color: #856404;
+    color: #fff3cd;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.badge-success {
+    background-color: #155724;
+    color: #d4edda;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.badge-info {
+    background-color: #0c5460;
+    color: #d1ecf1;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.badge-danger {
+    background-color: #721c24;
+    color: #f8d7da;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Mensagem de "Sem Pedidos" */
+.no-orders-message {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 1.1rem;
+}
+
+.no-orders-message a {
+    color: #E44F25;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.no-orders-message a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 850px) {
+    .profile-container {
+        grid-template-columns: 1fr; /* Coluna única */
+    }
+
+    .profile-card {
+        margin-bottom: 20px;
+    }
+}

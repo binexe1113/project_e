@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilos/styles.css"/>
+    <title>Área do Profissional - Elo Fácil</title>
+    <script src="scripts/auth.js" defer></script>
+</head>
+<body class="sales-body">
+
+    <header id="header">
+        <nav>
+            <ul>
+                <li><a href="index.html">◀ Voltar para Home</a></li>
+                <li id="login-container" style="display: none;"></li>
+                <li id="user-container" style="display: none;"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="profile-container"> <div style="width: 100%; text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #E44F25;">ÁREA DO BOOSTER</h1>
+            <p style="color: #ccc;">Aqui estão seus trabalhos ativos.</p>
+        </div>
+
+        <section class="history-section" style="width: 100%;">
+            <div class="table-wrapper">
+                <table id="pro-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Serviço</th>
+                            <th>Detalhes</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div id="no-jobs" class="no-orders-message" style="display:none">
+                    Você não tem nenhum job ativo no momento.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Script simples embutido para buscar os dados
+        document.addEventListener('DOMContentLoaded', async () => {
+            const tbody = document.querySelector('#pro-table tbody');
+            const noJobs = document.getElementById('no-jobs');
+
+            try {
+                // Chama a mesma API /api/profile
+                // Como sou 'professional', o backend já filtra só os MEUS jobs
+                const response = await fetch('/api/profile');
+                const data = await response.json();
+                const orders = data.orders;
+
+                if (orders.length === 0) {
+                    noJobs.style.display = 'block';
+                    document.getElementById('pro-table').style.display = 'none';
+                    return;
+                }
+
+                orders.forEach(order => {
+                    const tr = document.createElement('tr');
+
+                    // Formata Elo
+                    const rankInfo = order.service === 'md5' ? order.rank : `${order.rank} ➔ ${order.desired_rank}`;
+                    const clientName = order.client_name || "Cliente #" + order.user_id;
+
+                    tr.innerHTML = `
+                        <td>#${order.id}</td>
+                        <td style="font-weight:bold; color:white;">${clientName}</td>
+                        <td style="color:#E44F25;">${order.service.toUpperCase()}</td>
+                        <td>${rankInfo}</td>
+                        <td>${getStatusBadge(order.status)}</td>
+                        <td>
+                            <button onclick="updateStatus(${order.id}, 'Concluído')" style="padding:5px; cursor:pointer;">Concluir</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+            } catch (err) {
+                console.error(err);
+            }
+        });
+
+        function getStatusBadge(status) {
+            // Reutilize sua função de cores aqui
+            return `<span class="badge-info">${status || 'Pendente'}</span>`;
+        }
+
+        async function updateStatus(id, newStatus) {
+            alert("Aqui você implementará a lógica para mudar o status do pedido " + id);
+            // Depois você criará uma rota no backend para receber esse update
+        }
+    </script>
+</body>
+</html>

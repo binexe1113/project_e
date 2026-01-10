@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/binexe1113/project_e#readme",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "mysql2": "^3.16.0"
+    "express-session": "^1.18.2",
+    "mysql2": "^3.16.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   }
 }
