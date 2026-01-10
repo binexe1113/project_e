@@ -237,13 +237,16 @@ app.get('/api/profile', (req, res) => {
 
     } else {
         // CLIENT (Padrão): Vê apenas os seus pedidos (por ID ou Email)
+        // CLIENT (Padrão):
+        // Agora fazemos JOIN com a tabela users (apelidada de 'pro') para pegar o nome do booster
         sql = `
-            SELECT * FROM orders
-            WHERE user_id = ? OR email = ?
-            ORDER BY date DESC
-        `;
-        params = [userId, userEmail];
-    }
+          SELECT orders.*, pro.name AS professional_name
+          FROM orders
+          LEFT JOIN users AS pro ON orders.professional_id = pro.id
+          WHERE orders.user_id = ? OR orders.email = ?
+          ORDER BY orders.date DESC
+          `;
+        params = [userId, userEmail];    }
 
     // Executa a query decidida acima
     pool.query(sql, params, (err, results) => {
@@ -310,6 +313,37 @@ app.get('/api/orders', isAdmin, (req, res) => {
             return res.status(500).json({ error: "Database error" });
         }
         res.json(results);
+    });
+});
+
+// 1. Rota para buscar apenas os usuários que são 'professional'
+app.get('/api/professionals', isAdmin, (req, res) => {
+    const sql = "SELECT id, name FROM users WHERE role = 'professional'";
+
+    pool.query(sql, (err, results) => {
+        if (err) {
+            console.error("Erro ao buscar profissionais:", err);
+            return res.status(500).json({ error: "Erro no banco de dados" });
+        }
+        res.json(results);
+    });
+});
+
+// 2. Rota para atribuir (ou trocar) o profissional de um pedido
+app.post('/api/assign-order', isAdmin, (req, res) => {
+    const { orderId, professionalId } = req.body;
+
+    // Se professionalId for vazio (ex: selecionou "Nenhum"), salva NULL no banco
+    const proId = professionalId ? professionalId : null;
+
+    const sql = "UPDATE orders SET professional_id = ? WHERE id = ?";
+
+    pool.query(sql, [proId, orderId], (err, result) => {
+        if (err) {
+            console.error("Erro ao atribuir pedido:", err);
+            return res.status(500).json({ error: "Erro ao atualizar pedido" });
+        }
+        res.json({ success: true });
     });
 });
 

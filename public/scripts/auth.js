@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // --- LÓGICA DE DESTINO E EMOJIS ---
                 if (data.role === 'admin') {
                     link.href = '/admin.html';
-                    link.innerHTML = `Olá, ${firstName} 🛡️`; // Emoji de escudo
+                    link.innerHTML = `Olá, ${firstName} 🛡️ ADMIN`; // Emoji de escudo
                 } else if (data.role === 'professional') {
                     link.href = '/professional.html';
-                    link.innerHTML = `Olá, ${firstName} ⚔️`; // Emoji de espadas
+                    link.innerHTML = `Olá, ${firstName} ⚔️ acesse seus trabalhos aqui`; // Emoji de espadas
                 } else {
                     // Cliente normal
                     link.href = '/paginas/profile.html';
-                    link.innerHTML = `Olá, ${firstName}`;
+                    link.innerHTML = `Olá, ${firstName} acesse seus pedidos aqui` ;
                 }
 
                 // Insere o link criado dentro do span user-name

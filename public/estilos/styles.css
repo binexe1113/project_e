@@ -883,3 +883,26 @@ text-align: center;
         margin-bottom: 20px;
     }
 }
+
+
+/* --- CORREÇÃO DO MENU DE USUÁRIO LOGADO --- */
+
+/* Remove o efeito de hover (fundo laranja) APENAS do container do usuário */
+li#user-container:hover {
+    background-color: transparent !important;
+    border-radius: 0;
+}
+
+/* Opcional: Se quiser dar destaque apenas ao botão "Sair" quando passar o mouse nele */
+#user-container a[href="/logout"]:hover {
+    background-color: #E44F25;
+    border-radius: 5px;
+    color: white;
+    transition: 0.3s;
+}
+
+/* Garante que o nome do usuário não mude de cor de forma estranha ou herde estilos indesejados */
+#user-container #user-name a:hover {
+    text-decoration: underline; /* Apenas sublinha o nome, sem fundo */
+    background-color: transparent;
+}

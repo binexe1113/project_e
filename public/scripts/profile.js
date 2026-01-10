@@ -81,16 +81,19 @@ async function loadProfile() {
                     const cName = order.client_name || order.name || 'Desconhecido';
                     clientDisplay = `<td style="font-weight:bold; color:#ddd;">${cName}</td>`;
                 }
+                const boosterName = order.professional_name ? order.professional_name : '<span style="color:#888; font-style:italic;">Aguardando...</span>';
 
                 tr.innerHTML = `
                     <td>#${order.id}</td>
                     ${clientDisplay} <td class="service-name">${(order.service || '').toUpperCase()}</td>
                     <td>${details}</td>
+
+                    <td>${boosterName}</td>
+
                     <td>${date}</td>
                     <td class="price-col">${price}</td>
                     <td>${getStatusBadge(order.status)}</td>
-                `;
-                tbody.appendChild(tr);
+                `;                tbody.appendChild(tr);
             });
         }
 
