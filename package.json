@@ -1,0 +1,25 @@
+{
+  "name": "project_e",
+  "version": "1.0.0",
+  "description": "Este é um projeto de website front-end estático para a \"Elo Fácil\", uma landing page que promove serviços de Elo boosting para o jogo League of Legends.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binexe1113/project_e.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/binexe1113/project_e/issues"
+  },
+  "homepage": "https://github.com/binexe1113/project_e#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.16.0"
+  }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Elo Fácil</title>
+    <style>
+        body { font-family: sans-serif; background-color: #1a1a1a; color: white; padding: 20px; }
+        h1 { color: #E44F25; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #292841; }
+        th, td { border: 1px solid #444; padding: 12px; text-align: left; }
+        th { background-color: #E44F25; color: white; }
+        tr:nth-child(even) { background-color: #353453; }
+        tr:hover { background-color: #4a4969; }
+        .no-orders { text-align: center; margin-top: 20px; color: #888; }
+    </style>
+</head>
+<body>
+
+    <h1>📦 Pedidos Recebidos</h1>
+
+    <table id="ordersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Serviço</th>
+                <th>Elo Atual</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+    <div id="loading" class="no-orders">Carregando pedidos...</div>
+
+    <script>
+        async function loadOrders() {
+            try {
+                const response = await fetch('/api/orders');
+                const orders = await response.json();
+
+                const tbody = document.querySelector('#ordersTable tbody');
+                const loading = document.getElementById('loading');
+
+                tbody.innerHTML = ''; // Clear existing
+                loading.style.display = 'none';
+
+                if (orders.length === 0) {
+                    loading.textContent = "Nenhum pedido encontrado.";
+                    loading.style.display = 'block';
+                    return;
+                }
+
+                orders.forEach(order => {
+                    const row = document.createElement('tr');
+                    // Format date nicely
+                    const date = new Date(order.date).toLocaleString('pt-BR');
+
+                    row.innerHTML = `
+                        <td>#${order.id}</td>
+                        <td>${order.service}</td>
+                        <td>${order.rank}</td>
+                        <td>${order.name}</td>
+                        <td>${order.email}</td>
+                        <td>${order.phone}</td>
+                        <td>${date}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('loading').textContent = "Erro ao carregar pedidos.";
+            }
+        }
+
+        // Load orders when page opens
+        loadOrders();
+        // Refresh every 30 seconds automatically
+        setInterval(loadOrders, 30000);
+    </script>
+</body>
+</html>

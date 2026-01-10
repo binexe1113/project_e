@@ -1,0 +1,543 @@
+/* Estilo geral */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    min-height: 100vh;
+
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -10;
+}
+
+header {
+    background-color: rgba(15, 15, 15, 0.7);
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+}
+
+header nav {
+    margin-top: -10px;
+}
+
+li:hover{
+    background-color: #E44F25;
+    border-radius: 5px;
+}
+#titulo1 {
+    margin-top: 4.5rem;
+    color: #E44F25;
+    font-size: 2.5rem;
+}
+#t2{
+    font-size: 1.8rem;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    margin: 0 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+
+section {
+    width: 80%;
+    max-width: 800px;
+    margin: 80px 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+section h2 {
+    margin-top: 0;
+}
+
+#section1 {
+    padding: 20px;
+  }
+  #titul0{
+    font-size:xx-large;
+    color: #ffffff;
+  }
+
+
+  .product-button {
+    background-color: #E44F25;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.product-button:hover {
+    background-color: #88859A;
+    border-radius: 20px;
+
+
+}
+
+
+  #til0{
+    color: #E44F25;
+  }
+
+  #x0{
+    color: #88859A;
+  }
+  .grid-container0 {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    justify-content: center;
+
+  }
+  .grid-item0 {
+    background-color: rgb(29 28 41 /0.21) ;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 20px;
+  }
+
+
+#r1{
+    color: #1CB4CD;
+    font-size: x-large;
+}
+
+
+#xzy{
+    border-radius: 12px;
+}
+
+#xfd{
+    margin-top: 8px;
+}
+
+#feedbackTitle {
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.feedback-carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #292841;
+    border-radius: 15px;
+    padding: 20px 10px;
+
+}
+
+.feedback-track-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.feedback-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.feedback-item {
+    flex: 0 0 100%;
+    text-align: center;
+    color: white;
+}
+
+.feedback-content {
+    background-color: #353453;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.feedback-heading {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.feedback-subheading {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.feedback-text {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.feedback-stars-image {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+}
+
+.feedback-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.feedback-carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#backwardArrow {
+    left: 10px;
+}
+
+#forwardArrow {
+    right: 10px;
+}
+
+
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+#xr7{
+    color: orange;
+    font-size: x-large;
+}
+
+#hr{
+    opacity: 35%;
+    overflow-x: hidden;
+
+}
+#x{
+    color:#88859A;
+    font-size: medium;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.grid-item {
+    background-color: #1D1D29;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: auto;
+    text-align: center;
+
+}
+.grid-container2 {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.grid-item2 {
+    border-radius: 15px;
+    padding: 20px;
+    font-size: auto;
+    text-align: center;
+}
+
+
+  #pos_titulo {
+    font-size: 16px;
+    color: #444;
+  }
+
+
+  /* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+  #xzz{
+text-align: center;
+ }
+  label {
+    margin: 10px 0 5px;
+    text-align: left;
+  }
+
+  input, select, button {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  legend {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color:#E44F25;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #cc6144;
+  }
+
+
+
+
+/* Responsividade */
+@media ( max-width: 750px ) {
+    .grid-container0 {
+      grid-template-columns: 1fr;
+    }
+
+}
+
+
+
+@media ( max-width: 750px ) {
+    .grid-container {
+      grid-template-columns: 1fr;
+
+}
+}
+@media ( max-width: 750px ) {
+    .grid-container2 {
+      grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 768px) {
+        #font-header{
+            font-size: x-small;
+        }    }
+
+
+/* --- Estilos Específicos da Página de Vendas --- */
+
+.sales-body {
+    background-color: #0f0f0f; /* Fallback se o vídeo falhar */
+}
+
+.sales-container {
+    max-width: 1100px;
+    margin: 100px auto 50px; /* Margem superior para não bater no header */
+    padding: 20px;
+}
+
+.order-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Esquerda maior, Direita menor */
+    gap: 30px;
+}
+
+/* Coluna da Esquerda */
+.config-column {
+    background-color: rgba(29, 29, 41, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    color: #ccc;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.input-group select,
+.input-group input,
+.input-group textarea {
+    background-color: #121216;
+    border: 1px solid #444;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group select:focus,
+.input-group input:focus {
+    border-color: #E44F25;
+    box-shadow: 0 0 8px rgba(228, 79, 37, 0.3);
+}
+
+/* Seletor de Elos (Lado a Lado) */
+.elo-selector-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.arrow-separator {
+    font-size: 1.5rem;
+    color: #E44F25;
+    margin-top: 15px;
+}
+
+/* Coluna da Direita (Cartão de Preço) */
+.summary-column {
+    position: relative;
+}
+
+.price-card {
+    background-color: #1D1D29;
+    border: 2px solid #E44F25; /* Borda laranja chamativa */
+    padding: 30px;
+    border-radius: 15px;
+    position: sticky;
+    top: 100px; /* Faz o card acompanhar o scroll */
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.summary-details p {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding: 10px 0;
+    margin: 0;
+    color: #aaa;
+}
+
+.summary-details strong {
+    color: white;
+}
+
+.total-price {
+    margin: 20px 0;
+}
+
+.total-price small {
+    display: block;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+#price-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #E44F25;
+    text-shadow: 0 0 10px rgba(228, 79, 37, 0.5);
+}
+
+.cta-button {
+    background-color: #E44F25;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-top: 10px;
+}
+
+.cta-button:hover {
+    transform: scale(1.02);
+    background-color: #ff5e33;
+}
+
+.security-note {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 15px;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .order-wrapper {
+        grid-template-columns: 1fr; /* Vira uma coluna só no celular */
+    }
+
+    .price-card {
+        position: static; /* Remove o sticky no mobile */
+    }
+}
