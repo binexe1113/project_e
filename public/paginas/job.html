@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../estilos/styles.css"/>
-    <title>Configurar Pedido - Elo Fácil</title>
+    <title>Configurar Pedido - Elo GO</title>
 </head>
 <body class="sales-body">
 
@@ -21,15 +21,16 @@
   <main class="sales-container">
     <form method="POST" action="/submit-order" class="order-wrapper">
 
+      <input type="hidden" name="price" id="hiddenPrice" value="0,00">
+
       <section class="config-column">
         <h1>Configure seu Serviço</h1>
 
         <div class="input-group">
             <label>Tipo de Serviço</label>
-            <select id="service" name="service" required onchange="updatePrice()">
+            <select id="service" name="service" required>
                 <option value="elojob">Elo Job (Subir de Elo)</option>
                 <option value="duojob">Duo Job (Jogar Comigo)</option>
-                <option value="md5">MD5 (Melhor de 5)</option>
                 <option value="coach">Aula / Coach</option>
             </select>
         </div>
@@ -37,7 +38,7 @@
         <div class="elo-selector-group">
             <div class="input-group">
                 <label>Elo Atual</label>
-                <select id="current_rank" name="rank" onchange="updatePrice()">
+                <select id="current_rank" name="rank">
                     <option value="ferro">Ferro</option>
                     <option value="bronze">Bronze</option>
                     <option value="prata">Prata</option>
@@ -52,7 +53,7 @@
 
             <div class="input-group">
                 <label>Elo Desejado</label>
-                <select id="desired_rank" name="desired_rank" onchange="updatePrice()">
+                <select id="desired_rank" name="desired_rank">
                     <option value="ferro">Ferro</option>
                     <option value="bronze">Bronze</option>
                     <option value="prata">Prata</option>
@@ -102,60 +103,6 @@
     </form>
   </main>
 
-  <script>
-    // Tabela base de preços (valor acumulado de cada elo partindo do zero)
-    // Ex: Chegar no Prata custa 50, chegar no Ouro custa 100.
-    // O preço do serviço é (Destino - Origem).
-    const rankValues = {
-        'ferro': 0,
-        'bronze': 40,
-        'prata': 80,
-        'ouro': 140,
-        'platina': 220,
-        'esmeralda': 350,
-        'diamante': 550,
-        'mestre': 900
-    };
-
-    function updatePrice() {
-        const service = document.getElementById('service').value;
-        const current = document.getElementById('current_rank').value;
-        const desired = document.getElementById('desired_rank').value;
-
-        // Atualiza textos do resumo
-        document.getElementById('show-current').innerText = current.charAt(0).toUpperCase() + current.slice(1);
-        document.getElementById('show-desired').innerText = desired.charAt(0).toUpperCase() + desired.slice(1);
-        document.getElementById('show-service').innerText = service === 'elojob' ? 'Elo Job' : service.toUpperCase();
-
-        let price = 0;
-
-        if (service === 'elojob' || service === 'duojob') {
-            // Calculadora simples: Valor Destino - Valor Origem
-            let valCurrent = rankValues[current] || 0;
-            let valDesired = rankValues[desired] || 0;
-
-            if (valDesired > valCurrent) {
-                price = valDesired - valCurrent;
-            } else {
-                price = 0; // Não cobra se o elo desejado for menor
-            }
-
-            // Se for Duo Job, cobra 40% a mais (exemplo)
-            if (service === 'duojob') price *= 1.4;
-
-        } else if (service === 'md5') {
-            // Preço fixo para MD5 baseado no elo atual
-            price = 60;
-        } else if (service === 'coach') {
-            price = 50; // Preço por hora
-        }
-
-        // Formatar para Real Brasileiro
-        document.getElementById('price-display').innerText = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    }
-
-    // Roda uma vez ao carregar
-    updatePrice();
-  </script>
+  <script src="../scripts/job.js" defer></script>
 </body>
 </html>

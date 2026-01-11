@@ -434,6 +434,8 @@ text-align: center;
     font-size: 1rem;
     outline: none;
     transition: 0.3s;
+
+    resize: none;
 }
 
 .input-group select:focus,

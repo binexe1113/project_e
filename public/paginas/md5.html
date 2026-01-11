@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../estilos/styles.css"/>
+    <title>Contratar MD5 - Elo GO</title>
+</head>
+<body class="sales-body">
+
+  <header id="header">
+    <nav>
+        <ul>
+          <li><a href="../index.html">◀ Voltar para Home</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <video src="../imagens/background_video.mp4" autoplay muted loop preload="auto" id="background_video"></video>
+
+  <main class="sales-container">
+    <form id="md5Form" class="order-wrapper" action="/submit-order" method="POST">
+
+      <input type="hidden" name="service" value="md5">
+      <input type="hidden" name="desired_rank" value=""> <input type="hidden" name="price" id="hiddenPrice" value="40,00">
+
+      <section class="config-column">
+        <h1 style="color: #E44F25;">Configurar MD5</h1>
+        <p style="color: #ccc; margin-bottom: 20px;">Garantimos 80% de aproveitamento na sua série.</p>
+
+        <div class="input-group">
+            <label>Elo da Season Passada</label>
+            <select id="lastElo" name="rank" required>
+                <option value="unranked">Unranked / Ferro / Bronze</option>
+                <option value="prata">Prata</option>
+                <option value="ouro">Ouro</option>
+                <option value="platina">Platina</option>
+                <option value="esmeralda">Esmeralda</option>
+                <option value="diamante">Diamante</option>
+                <option value="mestre">Mestre+</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Seus Dados de Contato</label>
+            <input type="text" name="name" placeholder="Seu Nome Completo" required>
+            <input type="email" name="email" placeholder="Seu Melhor Email" required>
+            <input type="tel" name="phone" placeholder="WhatsApp / Discord" required>
+        </div>
+
+        <div class="input-group">
+            <label>Observações</label>
+            <textarea name="comments" rows="3" placeholder="Ex: Mono champ, horários específicos..."></textarea>
+        </div>
+      </section>
+
+      <section class="summary-column">
+        <div class="price-card">
+            <h2>Resumo do Pedido</h2>
+            <div class="summary-details">
+                <p>Serviço: <strong style="color: #E44F25;">MD5 (Melhor de 5)</strong></p>
+                <p>Elo Base: <strong id="show-elo">Unranked</strong></p>
+                <p>Jogos: <strong>5 Partidas</strong></p>
+            </div>
+
+            <hr>
+
+            <div class="total-price">
+                <small>Valor Total</small>
+                <span id="price-display">R$ 40,00</span>
+            </div>
+
+            <button type="submit" class="cta-button">Confirmar MD5</button>
+            <p class="security-note">🔒 Pagamento seguro via PIX ou Cartão.</p>
+        </div>
+      </section>
+
+    </form>
+  </main>
+
+  <script src="../scripts/md5.js" defer></script>
+</body>
+</html>

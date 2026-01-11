@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../estilos/styles.css"/>
+    <title>Comprar Vitórias - Elo GO</title>
+</head>
+<body class="sales-body">
+
+  <header id="header">
+    <nav>
+        <ul>
+          <li><a href="../index.html">◀ Voltar para Home</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <video src="../imagens/background_video.mp4" autoplay muted loop preload="auto" id="background_video"></video>
+
+  <main class="sales-container">
+    <form id="winsForm" class="order-wrapper" action="/submit-order" method="POST">
+
+      <input type="hidden" name="service" value="vitorias">
+      <input type="hidden" name="desired_rank" value=""> <input type="hidden" name="price" id="hiddenPrice" value="0,00">
+
+      <input type="hidden" name="comments" id="finalComments">
+
+      <section class="config-column">
+        <h1 style="color: #E44F25;">Vitórias Avulsas</h1>
+        <p style="color: #ccc; margin-bottom: 20px;">Precisa de apenas algumas vitórias para subir? Nós resolvemos.</p>
+
+        <div class="input-group">
+            <label>Qual seu Elo Atual?</label>
+            <select id="currentRank" name="rank" required onchange="updateWinsPrice()">
+                <option value="ferro">Ferro</option>
+                <option value="bronze">Bronze</option>
+                <option value="prata">Prata</option>
+                <option value="ouro">Ouro</option>
+                <option value="platina">Platina</option>
+                <option value="esmeralda">Esmeralda</option>
+                <option value="diamante">Diamante</option>
+                <option value="mestre">Mestre+</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Quantas vitórias você quer?</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="number" id="winQuantity" min="1" max="10" value="1"
+                       style="width: 80px; text-align: center;" onchange="updateWinsPrice()" oninput="updateWinsPrice()">
+                <span style="color: #ccc;">Vitória(s) Líquida(s)</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Seus Dados</label>
+            <input type="text" name="name" placeholder="Seu Nome Completo" required>
+            <input type="email" name="email" placeholder="Seu Melhor Email" required>
+            <input type="tel" name="phone" placeholder="WhatsApp / Discord" required>
+        </div>
+
+        <div class="input-group">
+            <label>Observações Extras</label>
+            <textarea id="userComments" rows="2" placeholder="Ex: Mono champ, horários..." oninput="updateWinsPrice()"></textarea>
+        </div>
+      </section>
+
+      <section class="summary-column">
+        <div class="price-card">
+            <h2>Resumo do Pedido</h2>
+            <div class="summary-details">
+                <p>Serviço: <strong style="color: #E44F25;">Vitórias Avulsas</strong></p>
+                <p>Elo: <strong id="show-elo">Ferro</strong></p>
+                <p>Quantidade: <strong id="show-qtd">1 Vitória</strong></p>
+            </div>
+
+            <hr>
+
+            <div class="total-price">
+                <small>Valor Total</small>
+                <span id="price-display">R$ 0,00</span>
+            </div>
+
+            <button type="submit" class="cta-button">Confirmar Vitórias</button>
+            <p class="security-note">🔒 Garantimos saldo de vitórias positivo.</p>
+        </div>
+      </section>
+
+    </form>
+  </main>
+
+  <script src="../scripts/wins.js" defer></script>
+</body>
+</html>
