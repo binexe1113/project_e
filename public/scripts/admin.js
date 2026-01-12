@@ -69,6 +69,7 @@ async function loadOrders() {
                 <td>#${order.id}</td>
                 <td>${selectHtml}</td>
                 <td>${order.service.toUpperCase()}</td>
+                <td>${order.price}</td>
                 <td>${order.rank} ➔ ${order.desired_rank}</td>
                 <td>${order.name}</td>
                 <td>${getStatusBadge(order.status)}</td>

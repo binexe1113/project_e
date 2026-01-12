@@ -5,6 +5,8 @@ const mysql = require('mysql2')
 const path = require('path')
 const session = require('express-session');
 const passport = require('passport');
+const bcrypt = require('bcrypt');
+const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const app = express()
@@ -39,10 +41,13 @@ app.use(passport.session());
 
 // 3. Configurar a Estratégia do Google
 passport.use(new GoogleStrategy({
+
+
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/auth/google/callback"
   },
+
   function(accessToken, refreshToken, profile, done) {
     // Essa função roda quando o Google devolve o usuário
     const googleId = profile.id;
@@ -75,6 +80,36 @@ passport.serializeUser((user, done) => {
     done(null, user.id); // Guarda só o ID na sessão para ficar leve
 });
 
+// --- ESTRATÉGIA LOCAL (Login com Email/Senha) ---
+// Adicione isto LOGO APÓS o passport.use do Google e ANTES do passport.serializeUser
+passport.use(new LocalStrategy({ usernameField: 'email' },
+  (email, password, done) => {
+    // Busca usuário pelo email
+    pool.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+      if (err) return done(err);
+      if (results.length === 0) return done(null, false, { message: 'Email não cadastrado.' });
+
+      const user = results[0];
+
+      // Se o usuário só tiver Google ID e não tiver senha
+      if (!user.password) {
+        return done(null, false, { message: 'Este email usa login com Google.' });
+      }
+
+      // Compara a senha digitada com a criptografada no banco
+      try {
+        if (await bcrypt.compare(password, user.password)) {
+            return done(null, user);
+        } else {
+            return done(null, false, { message: 'Senha incorreta.' });
+        }
+      } catch (e) {
+        return done(e);
+      }
+    });
+  }
+));
+
 passport.deserializeUser((id, done) => {
     pool.query('SELECT * FROM users WHERE id = ?', [id], (err, results) => {
         done(err, results[0]); // Recupera o user completo pelo ID
@@ -101,7 +136,8 @@ const initDb = () => {
     const tableUsers = `
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            google_id VARCHAR(255) NOT NULL UNIQUE,
+            google_id VARCHAR(255) UNIQUE,
+            password VARCHAR(255) NULL,
             name VARCHAR(100),
             email VARCHAR(100),
             role VARCHAR(20) DEFAULT 'client', -- 'client', 'admin' ou 'booster'
@@ -158,6 +194,18 @@ function isAdmin(req, res, next) {
     res.status(403).send("Acesso Negado. Apenas admins.");
 }
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    // Se não estiver logado, redireciona para o login ou dá erro
+    res.status(401).send(`
+        <h1>Acesso Negado</h1>
+        <p>Você precisa estar logado para realizar esta ação.</p>
+        <a href="/auth/google">Clique aqui para fazer login</a>
+    `);
+}
+
 
 //Routes
 // // Rota que inicia o login
@@ -174,6 +222,46 @@ app.get('/auth/google/callback',
         res.redirect('/index.html');
 
     }
+);
+
+// --- ROTA DE REGISTRO ---
+app.post('/auth/register', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    // 1. Verifica se usuário já existe
+    pool.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+        if (err) return res.status(500).send("Erro no servidor");
+
+        if (results.length > 0) {
+            return res.send("<script>alert('Email já cadastrado!'); window.location.href='/paginas/login.html';</script>");
+        }
+
+        // 2. Criptografa a senha
+        try {
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            // 3. Salva no banco (google_id fica NULL)
+            pool.query('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
+            [name, email, hashedPassword, 'client'], (err, result) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send("Erro ao registrar.");
+                }
+                // Alerta de sucesso e redireciona para login
+                res.send("<script>alert('Cadastro realizado! Faça login.'); window.location.href='/paginas/login.html';</script>");
+            });
+        } catch (e) {
+            res.status(500).send("Erro ao processar senha.");
+        }
+    });
+});
+
+// --- ROTA DE LOGIN LOCAL ---
+app.post('/auth/login',
+  passport.authenticate('local', {
+    successRedirect: '/index.html',
+    failureRedirect: '/paginas/login.html?error=true'
+  })
 );
 
 // Rota de Logout
@@ -261,7 +349,7 @@ app.get('/api/profile', (req, res) => {
         });
     });
 });
-app.post('/submit-order', (req, res) => {
+app.post('/submit-order', ensureAuthenticated, (req, res) => {
     const { service, rank, desired_rank, name, email, phone, comments, price } = req.body;
     const date = new Date();
 

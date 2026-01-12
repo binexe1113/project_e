@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../estilos/styles.css"/>
+    <title>Acessar Conta - Elo GO</title>
+    <style>
+        /* Estilos específicos para o Login */
+        .auth-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: rgba(29, 29, 41, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .auth-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        .auth-tab {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.2rem;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .auth-tab.active {
+            color: #E44F25;
+            border-bottom: 2px solid #E44F25;
+        }
+
+        .social-login {
+            margin: 20px 0;
+        }
+
+        .btn-google {
+            background-color: white;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-google:hover {
+            background-color: #f1f1f1;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            color: #666;
+            margin: 20px 0;
+        }
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #444;
+        }
+        .divider span { padding: 0 10px; font-size: 0.8rem; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="sales-body">
+
+  <header id="header">
+    <nav>
+        <ul>
+          <li><a href="../index.html">◀ Voltar para Home</a></li>
+        </ul>
+    </nav>
+  </header>
+
+  <video src="../imagens/background_video.mp4" autoplay muted loop preload="auto" id="background_video"></video>
+
+  <main class="auth-container">
+
+    <div class="auth-tabs">
+        <button id="tabLogin" class="auth-tab active" onclick="switchTab('login')">Entrar</button>
+        <button id="tabRegister" class="auth-tab" onclick="switchTab('register')">Cadastrar</button>
+    </div>
+
+    <div class="social-login">
+        <a href="/auth/google" class="btn-google">
+            <img src="https://e7.pngegg.com/pngimages/715/371/png-clipart-youtube-google-logo-google-s-google-account-youtube-text-trademark-thumbnail.png" width="50" alt="Google">
+            Entrar com Google
+        </a>
+    </div>
+
+    <div class="divider"><span>OU USE SEU EMAIL</span></div>
+
+    <form id="formLogin" action="/auth/login" method="POST">
+        <div class="input-group">
+            <input type="email" name="email" placeholder="Seu Email" required>
+        </div>
+        <div class="input-group" style="margin-top: 10px;">
+            <input type="password" name="password" placeholder="Sua Senha" required>
+        </div>
+        <button type="submit" class="cta-button" style="margin-top: 20px;">Acessar Conta</button>
+    </form>
+
+    <form id="formRegister" action="/auth/register" method="POST" class="hidden">
+        <div class="input-group">
+            <input type="text" name="name" placeholder="Seu Nome Completo" required>
+        </div>
+        <div class="input-group" style="margin-top: 10px;">
+            <input type="email" name="email" placeholder="Seu Email" required>
+        </div>
+        <div class="input-group" style="margin-top: 10px;">
+            <input type="password" name="password" placeholder="Crie uma Senha" required>
+        </div>
+        <button type="submit" class="cta-button" style="margin-top: 20px;">Criar Conta</button>
+    </form>
+
+  </main>
+
+  <script>
+      // Lógica simples para trocar entre Login e Cadastro
+      function switchTab(tab) {
+          const formLogin = document.getElementById('formLogin');
+          const formRegister = document.getElementById('formRegister');
+          const tabLogin = document.getElementById('tabLogin');
+          const tabRegister = document.getElementById('tabRegister');
+
+          if (tab === 'login') {
+              formLogin.classList.remove('hidden');
+              formRegister.classList.add('hidden');
+              tabLogin.classList.add('active');
+              tabRegister.classList.remove('active');
+          } else {
+              formLogin.classList.add('hidden');
+              formRegister.classList.remove('hidden');
+              tabLogin.classList.remove('active');
+              tabRegister.classList.add('active');
+          }
+      }
+
+      // Verifica se houve erro de login (url param)
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('error')) {
+          alert("Email ou senha incorretos.");
+      }
+  </script>
+
+</body>
+</html>

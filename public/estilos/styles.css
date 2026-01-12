@@ -908,3 +908,85 @@ li#user-container:hover {
     text-decoration: underline; /* Apenas sublinha o nome, sem fundo */
     background-color: transparent;
 }
+
+
+
+/* --- ESTILOS DA ÁREA DO PROFISSIONAL (Tabela) --- */
+
+#pro-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços duplos entre bordas */
+    margin-top: 20px;
+    background-color: rgba(29, 29, 41, 0.6); /* Fundo sutil */
+    border-radius: 8px;
+    overflow: hidden; /* Garante que as bordas arredondadas funcionem */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pro-table thead {
+    background-color: #202024;
+    border-bottom: 2px solid #E44F25; /* Linha laranja para destaque */
+}
+
+#pro-table th {
+    padding: 16px;
+    text-align: left;
+    font-size: 0.85rem;
+    color: #a8a8b3;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#pro-table td {
+    padding: 16px;
+    vertical-align: middle; /* Alinha o conteúdo verticalmente no centro */
+    border-bottom: 1px solid #323238;
+    color: #e1e1e6;
+    font-size: 0.95rem;
+}
+
+/* Efeito ao passar o mouse na linha */
+#pro-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Coluna 1: ID (Destaque Roxo) */
+#pro-table td:nth-child(1) {
+    color: #8257e6;
+    font-weight: bold;
+    width: 60px; /* Largura fixa para não ficar colado */
+}
+
+/* Coluna 2: Nome do Cliente (Branco e forte) */
+#pro-table td:nth-child(2) {
+    font-weight: 600;
+    color: #fff;
+    min-width: 150px;
+}
+
+/* Coluna 3: Serviço (Laranja e uppercase) */
+#pro-table td:nth-child(3) {
+    color: #E44F25;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+/* Botão de Ação (Concluir) */
+#pro-table button {
+    background-color: #04d361; /* Verde para ação de concluir */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+}
+
+#pro-table button:hover {
+    background-color: #03bb56;
+    transform: translateY(-1px);
+}

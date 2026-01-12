@@ -32,6 +32,7 @@
                             <th>ID</th>
                             <th>Cliente</th>
                             <th>Serviço</th>
+                            <th>Valor</th>
                             <th>Detalhes</th>
                             <th>Status</th>
                             <th>Ação</th>
@@ -77,6 +78,7 @@
                         <td>#${order.id}</td>
                         <td style="font-weight:bold; color:white;">${clientName}</td>
                         <td style="color:#E44F25;">${order.service.toUpperCase()}</td>
+                        <td>${order.price} </td>
                         <td>${rankInfo}</td>
                         <td>${getStatusBadge(order.status)}</td>
                         <td>
